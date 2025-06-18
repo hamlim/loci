@@ -1,14 +1,21 @@
 {
-	"name": "loci",
-	"scripts": {
-		"dev": "wrangler dev",
-		"deploy": "wrangler deploy --minify",
-		"cf-typegen": "wrangler types --env-interface CloudflareBindings"
-	},
-	"dependencies": {
-		"hono": "^4.7.11"
-	},
-	"devDependencies": {
-		"wrangler": "^4.20.3"
-	}
+  "name": "loci",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings && biome check --write",
+    "format": "biome check --write",
+    "check": "biome check",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage"
+  },
+  "dependencies": {
+    "hono": "4.8.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.0.0",
+    "bun-types": "1.2.16",
+    "wrangler": "4.20.3"
+  }
 }
