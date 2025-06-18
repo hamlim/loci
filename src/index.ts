@@ -22,8 +22,14 @@ app.get("/update/:latitude/:longitude", async (c) => {
   let db = c.env.DB;
   try {
     await db
-      .prepare("INSERT INTO locations (latitude, longitude) VALUES (?, ?)")
-      .bind(latitude, longitude)
+      .prepare(
+        "INSERT INTO locations (latitude, longitude, created_at) VALUES (?, ?, ?)",
+      )
+      .bind(
+        Number.parseFloat(latitude),
+        Number.parseFloat(longitude),
+        new Date().toISOString(),
+      )
       .run();
     return c.text("OK");
   } catch (e) {
